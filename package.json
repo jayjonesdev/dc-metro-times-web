@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.0",
     "@types/node": "^16.11.33",
@@ -42,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^13.2.0",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"
