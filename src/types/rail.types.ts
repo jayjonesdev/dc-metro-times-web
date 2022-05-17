@@ -4,13 +4,15 @@ export type RailPrediction = {
   DestinationCode: string | null;
   DestinationName: string;
   Group: string;
-  Line: 'SV' | 'BL' | 'OR' | 'GR' | 'YL' | 'RD';
+  Line: Line;
   LocationCode: string;
   LocationName: string;
   Min: string;
 };
 
-export enum Line {
+export type Line = 'SV' | 'BL' | 'OR' | 'GR' | 'YL' | 'RD';
+
+export enum LineColor {
   'SV' = 'bg-zinc-400',
   'BL' = 'bg-blue-600',
   'OR' = 'bg-orange-500',
@@ -18,3 +20,5 @@ export enum Line {
   'YL' = 'bg-yellow-500',
   'RD' = 'bg-red-600',
 }
+
+export type VehicleField = { key: string; label: string; order: number };
