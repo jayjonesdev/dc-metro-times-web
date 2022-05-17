@@ -7,9 +7,16 @@ import { TrainInformation } from './components';
 const App = () => {
   const [trains, setTrains] = React.useState<RailPrediction[]>([]);
   // TODO: Host env var
-  const socket = io('http://localhost:5555');
 
-  socket.on('realtime', (data: RailPrediction[]) => setTrains(data));
+  React.useEffect(() => {
+    const socket = io('http://localhost:5555');
+
+    socket.on('realtime', (data: RailPrediction[]) => setTrains(data));
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   // TODO: Fix layout
   return (
