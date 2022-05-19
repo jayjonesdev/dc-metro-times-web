@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div className='h-screen page p-6 overflow-scroll'>
       <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-        <table className='w-full text-gray-400 text-md text-left'>
+        <table className='w-full text-gray-400 text-md text-left border-4 border-gray-600'>
           <Header fields={trainFields} />
           <tbody className=''>
             {trains.map((train, index) => (
