@@ -5,14 +5,6 @@ import { Dropdown, Header, TransitInformation } from './components';
 import { trainFields } from './constants/transitFields';
 import './App.css';
 
-const trainFields: VehicleField[] = [
-  { key: 'Line', label: 'Line', order: 1 },
-  { key: 'LocationName', label: 'Station', order: 2 },
-  { key: 'DestinationName', label: 'Destination', order: 3 },
-  { key: 'Car', label: 'Cars', order: 4 },
-  { key: 'Min', label: 'Minutes', order: 5 },
-];
-
 const App = () => {
   const [trains, setTrains] = React.useState<RailPrediction[]>([]);
   const [data, setData] = React.useState<RailPrediction[]>([]);
