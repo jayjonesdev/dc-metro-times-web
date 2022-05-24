@@ -1,7 +1,5 @@
-import Label from './Label/Label.component';
-import Row from './Row/Row.component';
 import Header from './Header/Header.component';
 import TransitInformation from './TransitInformation/TransitInformation.component';
+import Dropdown from './Dropdown/Dropdown.component';
 
-
-export { Label, Row, TransitInformation, Header };
+export { TransitInformation, Header, Dropdown };
