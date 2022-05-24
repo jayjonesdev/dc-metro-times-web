@@ -12,7 +12,7 @@ const FilledCircle: React.FC<{ bgColor: string; line: Line }> = ({
 }) => (
   <div
     className={`rounded-full h-3 w-3 ring-1 ring-slate-400 ${bgColor}`}
-    data-message={`${line} line`}
+    aria-label={`${line} line`}
   />
 );
 
