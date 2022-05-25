@@ -10,15 +10,17 @@ const App = () => {
   const [data, setData] = React.useState<RailPrediction[]>([]);
   const [currentStation, setCurrentStation] = React.useState<string>('All');
   const [stations, setStations] = React.useState<string[]>([]);
-  const [transitType, setTransitType] = React.useState<'train' | 'bus'>(
-    'train'
-  );
+  const [transitType, setTransitType] =
+    React.useState<'train' | 'bus'>('train');
 
   React.useEffect(() => {
     const socket = io(process.env.REACT_APP_SERVER_URL as string);
     socket.on('realtime', (data: RailPrediction[]) =>
       transitType === 'train' ? setTrains(data) : {}
     );
+    // socket.on('incidents', (data: any) => {
+    //   console.log(data)
+    // })
 
     return () => {
       socket.disconnect();
@@ -38,19 +40,17 @@ const App = () => {
     setStations(stations);
   }, [trains]);
 
-  React.useEffect(() => filterData(), [trains, currentStation]);
+  React.useEffect(() => {
+    const filteredData = filterTrainStation(
+      transitType === 'train' ? trains : []
+    );
+    setData(filteredData);
+  }, [trains, currentStation]);
 
   const filterTrainStation = (trains: RailPrediction[]) => {
     return currentStation !== 'All'
       ? trains.filter((train) => train.LocationName === currentStation)
       : trains;
-  };
-
-  const filterData = () => {
-    const filteredData = filterTrainStation(
-      transitType === 'train' ? trains : []
-    );
-    setData(filteredData);
   };
 
   return (
