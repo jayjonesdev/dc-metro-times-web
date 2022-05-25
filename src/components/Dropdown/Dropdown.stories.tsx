@@ -12,13 +12,12 @@ export default {
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (
   <div className='flex flex-col'>
-    <Dropdown {...args} />
+    <Dropdown {...args}>Select Train Station</Dropdown>
   </div>
 );
 
 export const Main = Template.bind({});
 Main.args = {
-  text: 'Select Train Station',
   items: [
     'Van Ness',
     'Foggy Bottom',

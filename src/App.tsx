@@ -56,11 +56,12 @@ const App = () => {
   return (
     <div className='flex flex-col h-screen page p-6'>
       <Dropdown
-        text='Select Station'
         items={stations}
         itemClick={setCurrentStation}
         className='text-white self-end'
-      />
+      >
+        Select Station
+      </Dropdown>
       <div className='flex-grow overflow-auto border-4 border-gray-600 rounded-lg'>
         <table className='relative w-full border text-gray-400 text-md text-left'>
           <Header fields={trainFields} />

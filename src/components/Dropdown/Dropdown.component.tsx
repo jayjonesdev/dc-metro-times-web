@@ -5,11 +5,11 @@ import List from './List.component';
 
 // TODO: Fix button jusitification 
 const Dropdown: React.FC<{
-  text: string;
+  children: React.ReactNode;
   items: string[];
   className?: string;
   itemClick: (item: string) => void;
-}> = ({ text, items, className, itemClick }) => {
+}> = ({ children, items, className, itemClick }) => {
   const { show, nodeRef, triggerRef, setShow } = useDetectClickOut(false);
 
   const onClick = (item: string) => {
@@ -19,7 +19,7 @@ const Dropdown: React.FC<{
 
   return (
     <div className={className}>
-      <Button text={text} triggerRef={triggerRef} />
+      <Button triggerRef={triggerRef}>{children}</Button>
       <List items={items} show={show} nodeRef={nodeRef} onClick={onClick} />
     </div>
   );

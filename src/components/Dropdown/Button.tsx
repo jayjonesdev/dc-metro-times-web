@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Button: React.FC<{
-  text: string;
+  children: React.ReactNode;
   triggerRef: React.MutableRefObject<any>;
-}> = ({ text, triggerRef }) => (
+}> = ({ children, triggerRef }) => (
   <button
     id='dropdown'
     data-dropdown-toggle='dropdown-list'
@@ -11,7 +11,7 @@ const Button: React.FC<{
     type='button'
     ref={triggerRef}
   >
-    {text}
+    {children}
   </button>
 );
 
