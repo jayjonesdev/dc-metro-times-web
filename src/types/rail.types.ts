@@ -21,4 +21,29 @@ export enum LineColor {
   'RD' = 'bg-red-600',
 }
 
+export enum LineLongName {
+  'SV' = 'Silver',
+  'BL' = 'Blue',
+  'OR' = 'Orange',
+  'GR' = 'Green',
+  'YL' = 'Yellow',
+  'RD' = 'Red',
+}
+
+export type Incident = {
+  IncidentID: string;
+  Description: string;
+  IncidentType: IncidentType | string;
+  LinesAffected: string;
+  DateUpdated: string;
+};
+
+export type IncidentType = 'Alert' | 'Delay';
+
+export enum IncidentColor {
+  'Alert' = 'border-rose-500',
+  'Delay' = 'border-amber-400',
+  'Default' = 'border-zinc-400',
+}
+
 export type VehicleField = { key: string; label: string; order: number };
