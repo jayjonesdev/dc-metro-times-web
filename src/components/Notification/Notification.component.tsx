@@ -24,6 +24,7 @@ const Notification: React.FC<TNotification> = ({
 
   return (
     <div
+      style={{ zIndex: 102 }}
       className={`h-44 w-1/3 rounded-lg text-gray-100 p-6 border-4 ${borderColor} bg-gray-500 flex flex-start flex-col`}
     >
       <div className='flex'>
@@ -34,7 +35,7 @@ const Notification: React.FC<TNotification> = ({
         <div>
           <h3 className='text-md font-semibold mb-4'>{Description}</h3>
           <div className='flex flex-row'>
-            <p className='mr-4 font-medium'>Lines Affected:</p>
+            <p className='mr-4 font-sm'>Lines Affected:</p>
             <div className='flex items-center'>
               {affectedLines.map((line) =>
                 line !== '' ? (
