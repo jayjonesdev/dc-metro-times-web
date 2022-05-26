@@ -1,12 +1,13 @@
 import React from 'react';
 import { Line, LineColor } from '../../types/rail.types';
+import './filledcircle.styles.css';
 
 const FilledCircle: React.FC<{ line: Line; className?: string }> = ({
   line,
   className,
 }) => (
   <div
-    className={`rounded-full h-3 w-3 ring-1 ring-slate-400 ${LineColor[line]} ${className}`}
+    className={`filled-circle ${LineColor[line]} ${className}`}
     aria-label={`${line} line`}
     data-testid='line-filled-circle'
   />

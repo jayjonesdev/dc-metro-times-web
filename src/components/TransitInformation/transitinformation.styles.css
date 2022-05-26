@@ -1,0 +1,11 @@
+.row {
+    @apply border-b border-gray-700 odd:bg-gray-800 even:bg-gray-700 hover:bg-gray-600;
+}
+
+.vehicle-info {
+    @apply col-span-2;
+}
+
+.vehicle-value {
+    @apply px-6 py-4;
+}

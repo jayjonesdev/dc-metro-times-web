@@ -2,8 +2,9 @@ import React from 'react';
 import useDetectClickOut from '../../helpers/useDetectOutsideClick';
 import Button from './Button';
 import List from './List.component';
+import './dropdown.styles.css';
 
-// TODO: Fix button jusitification 
+// TODO: Fix button jusitification
 const Dropdown: React.FC<{
   children: React.ReactNode;
   items: string[];

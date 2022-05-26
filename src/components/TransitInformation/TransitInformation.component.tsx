@@ -5,16 +5,13 @@ import {
   VehicleField,
 } from '../../types/rail.types';
 import FilledCircle from '../FilledCircle/FilledCircle.component';
+import './transitinformation.styles.css';
 
 const TransitInformation: React.FC<{
   vehicle: RailPrediction;
   fields: VehicleField[];
 }> = ({ vehicle, fields }, index) => (
-  <tr
-    key={index}
-    data-testid='row'
-    className='border-b border-gray-700 odd:bg-gray-800 even:bg-gray-700 hover:bg-gray-600'
-  >
+  <tr key={index} data-testid='row' className='row'>
     {fields.map(({ key }, index) => {
       const fieldValue = () => {
         switch (key) {
@@ -23,7 +20,7 @@ const TransitInformation: React.FC<{
             return lineColor ? <FilledCircle line={vehicle.Line} /> : '-';
           default:
             return (
-              <div className='col-span-2'>
+              <div className='vehicle-info'>
                 {vehicle[key as keyof RailPrediction]}
               </div>
             );
@@ -31,11 +28,11 @@ const TransitInformation: React.FC<{
       };
 
       return vehicle[key as keyof RailPrediction] ? (
-        <td key={index} className={`px-6 py-4`}>
+        <td key={index} className='vehicle-value'>
           {fieldValue()}
         </td>
       ) : (
-        <td key={index} className={`px-6 py-4`}>
+        <td key={index} className='vehicle-value'>
           -
         </td>
       );

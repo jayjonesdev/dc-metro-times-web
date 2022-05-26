@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof TransitInformation>;
 
 const Template: ComponentStory<typeof TransitInformation> = (args) => (
-  <table className='relative w-full border text-gray-400 text-md text-left'>
+  <table className='relative w-full border text-gray-400 text-base text-left'>
     <tbody className='divide-y'>
       <TransitInformation {...args} />
     </tbody>

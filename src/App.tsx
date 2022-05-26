@@ -54,18 +54,18 @@ const App = () => {
   };
 
   return (
-    <div className='flex flex-col h-screen page p-6'>
+    <div className='page'>
       <Dropdown
         items={stations}
         itemClick={setCurrentStation}
-        className='text-white self-end'
+        className='station-dropdown'
       >
         Select Station
       </Dropdown>
-      <div className='flex-grow overflow-auto border-4 border-gray-600 rounded-lg'>
-        <table className='relative w-full border text-gray-400 text-md text-left'>
+      <div className='table-container'>
+        <table className='table'>
           <Header fields={trainFields} />
-          <tbody className='divide-y'>
+          <tbody className='table-body'>
             {data.map((vehicle, index) => (
               <TransitInformation
                 key={index}

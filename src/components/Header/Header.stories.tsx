@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof Header>;
 
 const Template: ComponentStory<typeof Header> = (args) => (
-  <table className='relative w-full border text-gray-400 text-md text-left'>
+  <table className='relative w-full border text-gray-400 text-base text-left'>
     <Header {...args} />
   </table>
 );

@@ -1,0 +1,15 @@
+.dropdown-button {
+    @apply focus:ring-1 focus:outline-none font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-white mb-1;
+}
+
+.dropdown-list {
+    @apply absolute bg-white border divide-y divide-gray-100 rounded drop-shadow-lg w-44 dark:bg-gray-700 right-5;
+}
+
+ul {
+    @apply py-1 text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-96;
+}
+
+ul > li > span {
+    @apply block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer select-none;
+}

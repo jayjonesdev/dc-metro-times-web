@@ -12,19 +12,12 @@ const List: React.FC<List> = ({ nodeRef, show, items, onClick }) => (
     id='dropdown-list'
     ref={nodeRef}
     style={{ zIndex: 101, visibility: !show ? 'hidden' : 'visible' }}
-    className={
-      'absolute bg-white border divide-y divide-gray-100 rounded drop-shadow-lg w-44 dark:bg-gray-700 right-5'
-    }
+    className={'dropdown-list'}
   >
-    <ul
-      className='py-1 text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-96'
-      aria-labelledby='dropdown'
-    >
+    <ul aria-labelledby='dropdown'>
       {items.map((item, index) => (
         <li key={index} onClick={() => onClick(item)}>
-          <span className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer select-none'>
-            {item}
-          </span>
+          <span>{item}</span>
         </li>
       ))}
     </ul>
