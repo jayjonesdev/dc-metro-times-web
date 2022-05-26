@@ -1,20 +1,10 @@
 import React from 'react';
 import {
-  Line,
   LineColor,
   RailPrediction,
   VehicleField,
 } from '../../types/rail.types';
-
-const FilledCircle: React.FC<{ bgColor: string; line: Line }> = ({
-  bgColor,
-  line,
-}) => (
-  <div
-    className={`rounded-full h-3 w-3 ring-1 ring-slate-400 ${bgColor}`}
-    aria-label={`${line} line`}
-  />
-);
+import FilledCircle from '../FilledCircle/FilledCircle.component';
 
 const TransitInformation: React.FC<{
   vehicle: RailPrediction;
@@ -30,11 +20,7 @@ const TransitInformation: React.FC<{
         switch (key) {
           case 'Line':
             const lineColor = LineColor[vehicle.Line];
-            return lineColor ? (
-              <FilledCircle bgColor={lineColor} line={vehicle.Line} />
-            ) : (
-              '-'
-            );
+            return lineColor ? <FilledCircle line={vehicle.Line} /> : '-';
           default:
             return (
               <div className='col-span-2'>
