@@ -1,4 +1,4 @@
-import { Incident } from '../../types/rail.types';
+import { RailIncident } from '../../types/rail.types';
 
 export default [
   {
@@ -9,4 +9,4 @@ export default [
     LinesAffected: 'GR; YL; SV; RD; OR; BL;',
     DateUpdated: '2022-05-02T04:48:00',
   },
-] as Incident[];
+] as RailIncident[];

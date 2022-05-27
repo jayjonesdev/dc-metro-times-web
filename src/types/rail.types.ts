@@ -30,7 +30,7 @@ export enum LineLongName {
   'RD' = 'Red',
 }
 
-export type Incident = {
+export type RailIncident = {
   IncidentID: string;
   Description: string;
   IncidentType: IncidentType | string;

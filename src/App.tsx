@@ -1,7 +1,12 @@
 import React from 'react';
 import { io } from 'socket.io-client';
-import { RailPrediction } from './types/rail.types';
-import { Dropdown, Header, TransitInformation } from './components';
+import { RailIncident, RailPrediction } from './types/rail.types';
+import {
+  Dropdown,
+  Header,
+  TransitInformation,
+  NotificationHandler,
+} from './components';
 import { trainFields } from './constants/transitFields';
 import './App.css';
 
@@ -12,15 +17,22 @@ const App = () => {
   const [stations, setStations] = React.useState<string[]>([]);
   const [transitType, setTransitType] =
     React.useState<'train' | 'bus'>('train');
+  const [incidents, setIncidents] = React.useState<RailIncident[]>([]);
+
+  const filterTrainStation = (trains: RailPrediction[]) => {
+    return currentStation !== 'All'
+      ? trains.filter((train) => train.LocationName === currentStation)
+      : trains;
+  };
 
   React.useEffect(() => {
     const socket = io(process.env.REACT_APP_SERVER_URL as string);
     socket.on('realtime', (data: RailPrediction[]) =>
       transitType === 'train' ? setTrains(data) : {}
     );
-    // socket.on('incidents', (data: any) => {
-    //   console.log(data)
-    // })
+    socket.on('incidents', (data: any) => {
+      setIncidents(data);
+    });
 
     return () => {
       socket.disconnect();
@@ -45,13 +57,7 @@ const App = () => {
       transitType === 'train' ? trains : []
     );
     setData(filteredData);
-  }, [trains, currentStation]);
-
-  const filterTrainStation = (trains: RailPrediction[]) => {
-    return currentStation !== 'All'
-      ? trains.filter((train) => train.LocationName === currentStation)
-      : trains;
-  };
+  }, [trains, currentStation, transitType]);
 
   return (
     <div className='page'>
@@ -76,6 +82,7 @@ const App = () => {
           </tbody>
         </table>
       </div>
+      <NotificationHandler incidents={incidents} />
     </div>
   );
 };

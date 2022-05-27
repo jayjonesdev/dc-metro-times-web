@@ -1,19 +1,22 @@
 import React from 'react';
 import {
-  Incident,
+  RailIncident,
   IncidentColor,
   IncidentType,
   Line,
 } from '../../types/rail.types';
 import FilledCircle from '../FilledCircle/FilledCircle.component';
 import IncidentIcon from '../IncidentIcon/IncidentIcon.component';
+import './notification.styles.css';
 
-type TNotification = Incident;
+type TNotification = RailIncident;
 
-const Notification: React.FC<TNotification> = ({
+const Notification: React.FC<TNotification & { onClick: () => void }> = ({
   IncidentType: incidentType,
   Description,
   LinesAffected,
+  IncidentID,
+  onClick,
 }) => {
   const borderColor = `${
     incidentType in IncidentColor
@@ -21,21 +24,30 @@ const Notification: React.FC<TNotification> = ({
       : IncidentColor.Default
   }`;
   const affectedLines = LinesAffected.split(/;[\s]?/);
+  const [show, setShow] = React.useState<boolean>(true);
+  const close = () => {
+    onClick();
+    setShow(false);
+  };
+
+  React.useEffect(() => {
+    setShow(true);
+  }, [IncidentID]);
 
   return (
     <div
-      style={{ zIndex: 102 }}
-      className={`h-44 w-1/3 rounded-lg text-gray-100 p-6 border-4 ${borderColor} bg-gray-500 flex flex-start flex-col`}
+      style={{ zIndex: 102, visibility: show ? 'visible' : 'hidden' }}
+      className={`notification ${borderColor}`}
     >
       <div className='flex'>
         <IncidentIcon
           incident={incidentType}
-          className='mr-2 h-7 w-7 text-white font-bold'
+          className='incident-icon'
         />
         <div>
-          <h3 className='text-md font-semibold mb-4'>{Description}</h3>
+          <h3 className='description'>{Description}</h3>
           <div className='flex flex-row'>
-            <p className='mr-4 font-sm'>Lines Affected:</p>
+            <p className='lines-affected'>Lines Affected:</p>
             <div className='flex items-center'>
               {affectedLines.map((line) =>
                 line !== '' ? (
@@ -44,9 +56,7 @@ const Notification: React.FC<TNotification> = ({
                     className='mr-2'
                     line={line as Line}
                   />
-                ) : (
-                  <></>
-                )
+                ) : null
               )}
             </div>
           </div>
@@ -55,7 +65,8 @@ const Notification: React.FC<TNotification> = ({
 
       <button
         type='button'
-        className='self-end font-medium rounded-lg text-sm text-center shadow-lg shadow-gray-500/50 dark:bg-gray-600 dark:hover:bg-gray-700 px-4 py-2.5'
+        className='close-button'
+        onClick={close}
       >
         Close
       </button>
