@@ -1,6 +1,6 @@
 import { VehicleField } from '../types/rail.types';
 
-export const trainFields: VehicleField[] = [
+export const railFields: VehicleField[] = [
   { key: 'Line', label: 'Line', order: 1 },
   { key: 'LocationName', label: 'Station', order: 2 },
   { key: 'DestinationName', label: 'Destination', order: 3 },

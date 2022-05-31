@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TransitInformation from './TransitInformation.component';
-import { trainFields } from '../../constants/transitFields';
+import { railFields } from '../../constants/transitFields';
 import trains from './mockTrainData';
 
 export default {
@@ -23,5 +23,5 @@ const Template: ComponentStory<typeof TransitInformation> = (args) => (
 export const Train = Template.bind({});
 Train.args = {
   vehicle: trains[0],
-  fields: trainFields,
+  fields: railFields,
 };

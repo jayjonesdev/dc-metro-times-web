@@ -1,14 +1,14 @@
 import { screen, render } from '@testing-library/react';
-import { trainFields } from '../../constants/transitFields';
+import { railFields } from '../../constants/transitFields';
 import Header from './Header.component';
 
 it('Transit Information has text of `Georgia Ave-Petworth`', () => {
   render(
     <table>
-      <Header fields={trainFields} />
+      <Header fields={railFields} />
     </table>
   );
   const header = screen.getByTestId('header');
 
-  trainFields.every((field) => expect(header).toHaveTextContent(field.label));
+  railFields.every((field) => expect(header).toHaveTextContent(field.label));
 });

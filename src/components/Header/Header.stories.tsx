@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Header from './Header.component';
-import { trainFields } from '../../constants/transitFields';
+import { railFields } from '../../constants/transitFields';
 
 export default {
   title: 'Table/Header',
@@ -20,5 +20,5 @@ const Template: ComponentStory<typeof Header> = (args) => (
 
 export const Train = Template.bind({});
 Train.args = {
-  fields: trainFields,
+  fields: railFields,
 };
