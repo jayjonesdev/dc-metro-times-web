@@ -1,0 +1,12 @@
+.table-container {
+    @apply flex-grow overflow-auto border-4 border-gray-600 rounded-lg;
+  }
+
+  .table {
+    @apply relative w-full border text-gray-400 text-base text-left;
+  }
+  
+  .table-body {
+    @apply divide-y;
+  }
+  
