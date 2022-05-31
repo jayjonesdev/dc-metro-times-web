@@ -21,13 +21,13 @@ DC Metro Times is an app that allows you to view the schedules of buses and trai
 
 <img width="2056" alt="Screen Shot 2022-05-31 at 3 36 53 PM" src="https://user-images.githubusercontent.com/78396656/171270790-11648c5e-e513-423d-964e-64de6d21f9ab.png">
 
-
 ## Technologies
 - React
 - TypeScript
 - TailwindCSS
 - Socket.IO
 - Jest
+- Storybook
 
 ## Setup
 - download/clone the repository
