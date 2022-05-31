@@ -5,6 +5,8 @@ import Notification from './Notification/Notification.component';
 import FilledCircle from './FilledCircle/FilledCircle.component';
 import IncidentIcon from './IncidentIcon/IncidentIcon.component';
 import NotificationHandler from './NotificationHandler/NotificationHandler.component';
+import Table from './Table/Table.component';
+import RailTransit from './RailTransit/RailTransit.component';
 
 export {
   TransitInformation,
@@ -14,4 +16,6 @@ export {
   FilledCircle,
   IncidentIcon,
   NotificationHandler,
+  Table,
+  RailTransit,
 };
