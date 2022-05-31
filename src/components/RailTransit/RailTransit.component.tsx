@@ -4,8 +4,8 @@ import { fetchRailPredictions } from '../../api/rail.api';
 import { railFields } from '../../constants/transitFields';
 import { RailIncident, RailPrediction } from '../../types/rail.types';
 import { Dropdown, NotificationHandler, Table } from '..';
-import './railTransit.styles.css';
 import { filterStation, getStations } from '../../utils';
+import './railTransit.styles.css';
 
 const RailTransit: React.FC = () => {
   const [data, setData] = React.useState<RailPrediction[]>([]);
@@ -15,11 +15,19 @@ const RailTransit: React.FC = () => {
   const [trains, setTrains] = React.useState<RailPrediction[]>([]);
 
   React.useEffect(() => {
+    const socket = io(process.env.REACT_APP_SERVER_URL as string);
     fetchRailPredictions().then((data) => {
       const stations = getStations(data);
       setStations(stations);
       setData(data);
     });
+
+    socket.on('rail/realtime', (data: RailPrediction[]) => setData(data));
+    socket.on('rail/incidents', (data: RailIncident[]) => setIncidents(data));
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   React.useEffect(() => {
@@ -27,25 +35,17 @@ const RailTransit: React.FC = () => {
     setTrains(trains);
   }, [currentStation, data]);
 
-  React.useEffect(() => {
-    const socket = io(process.env.REACT_APP_SERVER_URL as string);
-    socket.on('rail/realtime', (data: RailPrediction[]) => setData(data));
-    socket.on('rail/incidents', (data: RailIncident[]) => setIncidents(data));
-
-    return () => {
-      socket.disconnect();
-    };
-  });
-
   return (
     <>
-      <Dropdown
-        items={stations}
-        itemClick={setCurrentStation}
-        className='station-dropdown'
-      >
-        Select Station
-      </Dropdown>
+      <div className='station-dropdown'>
+        <p className='mr-3'>Current Station:</p>
+        <Dropdown
+          items={stations}
+          itemClick={setCurrentStation}
+        >
+          {currentStation}
+        </Dropdown>
+      </div>
       <Table fields={railFields} data={trains} />
       <NotificationHandler incidents={incidents} />
     </>
