@@ -3,7 +3,7 @@ import { RailTransit } from './components';
 import './App.css';
 
 const App = () => {
-  const [transitType, setTransitType] = React.useState<'rail' | 'bus'>('rail');
+  const [transitType, _setTransitType] = React.useState<'rail' | 'bus'>('rail');
 
   return (
     <div className='page'>

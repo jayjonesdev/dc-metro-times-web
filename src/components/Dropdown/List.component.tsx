@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface List {
+interface IList {
   nodeRef: React.MutableRefObject<any>;
   show: boolean;
   items: string[];
   onClick: (item: string) => void;
 }
 
-const List: React.FC<List> = ({ nodeRef, show, items, onClick }) => (
+const List: React.FC<IList> = ({ nodeRef, show, items, onClick }) => (
   <div
     id='dropdown-list'
     ref={nodeRef}
