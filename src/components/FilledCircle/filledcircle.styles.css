@@ -1,3 +1,7 @@
 .filled-circle {
-    @apply rounded-full h-3 w-3 ring-1 ring-slate-400 ;
+    @apply relative inline-flex rounded-full h-3 w-3;
+}
+
+.pulse {
+    @apply animate-ping absolute inline-flex h-3 w-3 rounded-full opacity-75;
 }
