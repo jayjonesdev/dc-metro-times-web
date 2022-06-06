@@ -1,26 +1,22 @@
 import React from 'react';
 import { io } from 'socket.io-client';
-import { fetchRailPredictions } from '../../api/rail.api';
 import { railFields } from '../../constants/transitFields';
 import { RailIncident, RailPrediction } from '../../types/rail.types';
+import useFetchRailTransitInformation from './useFetchRailTransitInformation';
 import { Dropdown, NotificationHandler, Table } from '..';
-import { filterStation, getStations } from '../../utils';
+import { filterStation } from '../../utils';
 import './railTransit.styles.css';
 
 const RailTransit: React.FC = () => {
+  const [stations, initIncidents, initPredictions, _error, _isLoading] =
+    useFetchRailTransitInformation();
   const [data, setData] = React.useState<RailPrediction[]>([]);
   const [currentStation, setCurrentStation] = React.useState<string>('All');
-  const [stations, setStations] = React.useState<string[]>([]);
   const [incidents, setIncidents] = React.useState<RailIncident[]>([]);
   const [trains, setTrains] = React.useState<RailPrediction[]>([]);
 
   React.useEffect(() => {
     const socket = io(process.env.REACT_APP_SERVER_URL as string);
-    fetchRailPredictions().then((data) => {
-      const stations = getStations(data);
-      setStations(stations);
-      setData(data);
-    });
 
     socket.on('rail/realtime', (data: RailPrediction[]) => setData(data));
     socket.on('rail/incidents', (data: RailIncident[]) => setIncidents(data));
@@ -31,18 +27,21 @@ const RailTransit: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
+    setData(initPredictions);
+    setIncidents(initIncidents);
+  }, [initIncidents, initPredictions]);
+
+  React.useEffect(() => {
     const trains = filterStation(data, currentStation);
     setTrains(trains);
   }, [currentStation, data]);
 
+  // TODO: Implement loading and error handling
   return (
     <>
       <div className='station-dropdown'>
         <p className='mr-3'>Current Station:</p>
-        <Dropdown
-          items={stations}
-          itemClick={setCurrentStation}
-        >
+        <Dropdown items={stations} itemClick={setCurrentStation}>
           {currentStation}
         </Dropdown>
       </div>
