@@ -3,20 +3,22 @@ import { fetchRailIncidents, fetchRailPredictions } from '../../api/rail.api';
 import { RailIncident, RailPrediction } from '../../types/rail.types';
 import { getStations } from '../../utils';
 
-const useFetchRailTransitInformation = (): [
-  string[],
-  RailIncident[],
-  RailPrediction[],
-  string | null,
-  boolean
-] => {
+interface RailTransitInformation {
+  stations: string[];
+  incidents: RailIncident[];
+  predictions: RailPrediction[];
+  error: string | null;
+  isLoading: boolean;
+}
+
+const useFetchRailTransitInformation = (): RailTransitInformation => {
   const [stations, setStations] = useState<string[]>([]);
   const [incidents, setIncidents] = useState<RailIncident[]>([]);
   const [predictions, setPredictions] = useState<RailPrediction[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useEffect(() => {    
+  useEffect(() => {
     Promise.all([fetchRailIncidents(), fetchRailPredictions()])
       .then(([incidents, predictions]) => {
         const stations = getStations(predictions);
@@ -33,7 +35,7 @@ const useFetchRailTransitInformation = (): [
       .finally(() => setIsLoading(false));
   }, []);
 
-  return [stations, incidents, predictions, error, isLoading];
+  return { stations, incidents, predictions, error, isLoading };
 };
 
 export default useFetchRailTransitInformation;

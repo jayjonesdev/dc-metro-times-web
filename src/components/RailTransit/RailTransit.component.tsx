@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState, FC } from 'react';
 import { io } from 'socket.io-client';
 import { railFields } from '../../constants/transitFields';
 import { RailIncident, RailPrediction } from '../../types/rail.types';
@@ -7,15 +7,18 @@ import { Dropdown, NotificationHandler, Table } from '..';
 import { filterStation } from '../../utils';
 import './railTransit.styles.css';
 
-const RailTransit: React.FC = () => {
-  const [stations, initIncidents, initPredictions, _error, _isLoading] =
-    useFetchRailTransitInformation();
-  const [data, setData] = React.useState<RailPrediction[]>([]);
-  const [currentStation, setCurrentStation] = React.useState<string>('All');
-  const [incidents, setIncidents] = React.useState<RailIncident[]>([]);
-  const [trains, setTrains] = React.useState<RailPrediction[]>([]);
+const RailTransit: FC = () => {
+  const {
+    incidents: initIncidents,
+    stations,
+    predictions: initPredictions,
+  } = useFetchRailTransitInformation();
+  const [data, setData] = useState<RailPrediction[]>([]);
+  const [currentStation, setCurrentStation] = useState<string>('All');
+  const [incidents, setIncidents] = useState<RailIncident[]>([]);
+  const [trains, setTrains] = useState<RailPrediction[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const socket = io(process.env.REACT_APP_SERVER_URL as string);
 
     socket.on('rail/realtime', (data: RailPrediction[]) => setData(data));
@@ -26,12 +29,12 @@ const RailTransit: React.FC = () => {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setData(initPredictions);
     setIncidents(initIncidents);
-  }, [initIncidents, initPredictions]);
+  }, [initPredictions, initIncidents]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const trains = filterStation(data, currentStation);
     setTrains(trains);
   }, [currentStation, data]);
