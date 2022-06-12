@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { fetchRailIncidents, fetchRailPredictions } from '../../api/rail.api';
-import { RailIncident, RailPrediction } from '../../types/rail.types';
-import { getStations } from '../../utils';
+import { fetchRailIncidents, fetchRailPredictions } from '../api/rail.api';
+import { RailIncident, RailPrediction } from '../types/rail.types';
+import { getStations } from '../utils';
 
 interface RailTransitInformation {
   stations: string[];

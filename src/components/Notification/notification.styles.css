@@ -1,19 +1,82 @@
 .notification {
-    @apply absolute max-h-44 w-1/3 rounded-lg text-gray-100 p-6 border-4 bg-gray-500 flex justify-start flex-col bottom-5 right-5;
+  @apply absolute max-h-44 w-1/3 rounded-lg text-gray-100 p-6 border-4 bg-gray-500 flex justify-start flex-col bottom-5 right-5;
+  -webkit-animation: slideIn 1s forwards;
+  -moz-animation: slideIn 1s forwards;
+  animation: slideIn 1s forwards;
+}
+
+.slideIn {
+  
+}
+
+.slideOut {
+  -webkit-animation: slideOut 1s forwards;
+  -moz-animation: slideOut 1s forwards;
+  animation: slideOut 1s forwards;
 }
 
 .incident-icon {
-    @apply mr-2 h-7 w-7 text-white font-bold;
+  @apply mr-2 h-7 w-7 text-white font-bold;
 }
 
 .description {
-    @apply text-base font-semibold mb-4;
+  @apply text-base font-semibold mb-4;
 }
 
 .lines-affected {
-    @apply mr-4 text-base;
+  @apply mr-4 text-base;
 }
 
 .close-button {
-    @apply self-end font-medium rounded-lg text-sm text-center shadow-lg shadow-gray-500/50 dark:bg-gray-600 dark:hover:bg-gray-700 px-4 py-2.5;
+  @apply self-end font-medium rounded-lg text-sm text-center shadow-lg shadow-gray-500/50 dark:bg-gray-600 dark:hover:bg-gray-700 px-4 py-2.5;
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    transform: translateX(900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    transform: translateX(900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slideOut {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-500px);
+  }
+}
+@-moz-keyframes slideOut {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-500px);
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-500px);
+  }
 }

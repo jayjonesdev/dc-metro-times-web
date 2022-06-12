@@ -40,10 +40,7 @@ const Notification: React.FC<TNotification & { onClick: () => void }> = ({
       className={`notification ${borderColor}`}
     >
       <div className='flex'>
-        <IncidentIcon
-          incident={incidentType}
-          className='incident-icon'
-        />
+        <IncidentIcon incident={incidentType} className='incident-icon' />
         <div>
           <h3 className='description'>{Description}</h3>
           <div className='flex flex-row'>
@@ -63,11 +60,7 @@ const Notification: React.FC<TNotification & { onClick: () => void }> = ({
         </div>
       </div>
 
-      <button
-        type='button'
-        className='close-button'
-        onClick={close}
-      >
+      <button type='button' className='close-button' onClick={close}>
         Close
       </button>
     </div>

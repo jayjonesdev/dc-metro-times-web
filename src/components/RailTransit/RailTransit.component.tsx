@@ -2,7 +2,7 @@ import { useEffect, useState, FC } from 'react';
 import { io } from 'socket.io-client';
 import { railFields } from '../../constants/transitFields';
 import { RailIncident, RailPrediction } from '../../types/rail.types';
-import useFetchRailTransitInformation from './useFetchRailTransitInformation';
+import useFetchRailTransitInformation from '../../hooks/useFetchRailTransitInformation';
 import { Dropdown, NotificationHandler, Table } from '..';
 import { filterStation } from '../../utils';
 import './railTransit.styles.css';
