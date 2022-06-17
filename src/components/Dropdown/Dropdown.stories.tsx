@@ -16,8 +16,8 @@ const Template: ComponentStory<typeof Dropdown> = (args) => (
   </div>
 );
 
-export const Main = Template.bind({});
-Main.args = {
+export const Station = Template.bind({});
+Station.args = {
   items: [
     'Van Ness',
     'Foggy Bottom',

@@ -84,7 +84,7 @@ const List: React.FC<IList> = ({ nodeRef, show, items, onClick }) => {
             updateFavorites={updateFavorites}
           />
         ))}
-        <p className='px-3 py-2 bg-gray-600 sticky top-0 mb-1 mt-1'>Stations</p>
+        <p className='stations-header'>Stations</p>
         {items.map(
           (item) =>
             !favorites.includes(item) && (

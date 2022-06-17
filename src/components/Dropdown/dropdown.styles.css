@@ -38,3 +38,7 @@ svg.favorited:hover {
   @apply bg-gray-600 sticky mb-1;
   top: -4px;
 }
+
+.stations-header {
+  @apply px-3 py-2 bg-gray-600 sticky top-0 mb-1 mt-1;
+}
