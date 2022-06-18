@@ -55,13 +55,23 @@ const List: React.FC<IList> = ({ nodeRef, show, items, onClick }) => {
   }, [favorites]);
 
   const updateFavorites = (favorite: string) => {
-    if (favorites.includes(favorite)) {
-      setFavorites((favs) => {
-        return favs.filter((fav) => fav !== favorite);
+    setFavorites((favs) => {
+      let insertionIndex: number = 0;
+      let updatedFavs: string[] = [];
+
+      updatedFavs = favs.filter((fav, index) => {
+        if (favorite >= fav) {
+          insertionIndex = index + 1;
+        }
+        return fav !== favorite;
       });
-    } else {
-      setFavorites((favs) => [...favs, favorite].sort());
-    }
+
+      if (updatedFavs.length === favs.length) {
+        updatedFavs = Object.create(favs);
+        updatedFavs.splice(insertionIndex, 0, favorite);
+      }
+      return updatedFavs;
+    });
   };
 
   return (
