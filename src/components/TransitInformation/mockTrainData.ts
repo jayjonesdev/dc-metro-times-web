@@ -1,6 +1,53 @@
-import { RailPrediction } from "../../types/rail.types";
+import { RailPrediction } from '../../types/rail.types';
 
-export default [
+export const anacostiaPredictions = [
+  {
+    Car: null,
+    Destination: 'ssenger',
+    DestinationCode: null,
+    DestinationName: 'No Passenger',
+    Group: '2',
+    Line: 'No',
+    LocationCode: 'F06',
+    LocationName: 'Anacostia',
+    Min: 'ARR',
+  },
+  {
+    Car: '6',
+    Destination: 'Grnbelt',
+    DestinationCode: 'E10',
+    DestinationName: 'Greenbelt',
+    Group: '1',
+    Line: 'GR',
+    LocationCode: 'F06',
+    LocationName: 'Anacostia',
+    Min: '19',
+  },
+  {
+    Car: '6',
+    Destination: 'Brnch Av',
+    DestinationCode: 'F11',
+    DestinationName: 'Branch Ave',
+    Group: '2',
+    Line: 'GR',
+    LocationCode: 'F06',
+    LocationName: 'Anacostia',
+    Min: '21',
+  },
+  {
+    Car: '-',
+    Destination: 'Grnbelt',
+    DestinationCode: 'E10',
+    DestinationName: 'Greenbelt',
+    Group: '1',
+    Line: 'GR',
+    LocationCode: 'F06',
+    LocationName: 'Anacostia',
+    Min: '39',
+  },
+];
+
+export const railPredictions = [
   {
     Car: '6',
     Destination: 'Brnch Av',

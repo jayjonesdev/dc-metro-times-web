@@ -1,6 +1,7 @@
 import React from 'react';
 import { StarIcon } from '@heroicons/react/outline';
 import './dropdown.styles.css';
+import { upsertSort } from '../../utils';
 
 interface IList {
   nodeRef: React.MutableRefObject<any>;
@@ -55,23 +56,7 @@ const List: React.FC<IList> = ({ nodeRef, show, items, onClick }) => {
   }, [favorites]);
 
   const updateFavorites = (favorite: string) => {
-    setFavorites((favs) => {
-      let insertionIndex: number = 0;
-      let updatedFavs: string[] = [];
-
-      updatedFavs = favs.filter((fav, index) => {
-        if (favorite >= fav) {
-          insertionIndex = index + 1;
-        }
-        return fav !== favorite;
-      });
-
-      if (updatedFavs.length === favs.length) {
-        updatedFavs = Object.create(favs);
-        updatedFavs.splice(insertionIndex, 0, favorite);
-      }
-      return updatedFavs;
-    });
+    setFavorites((favs) => upsertSort(favs, favorite));
   };
 
   return (
