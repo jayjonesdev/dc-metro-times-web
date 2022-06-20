@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TransitInformation from './TransitInformation.component';
 import { railFields } from '../../constants/transitFields';
-import trains from './mockTrainData';
+import { railPredictions } from './mockTrainData';
 
 export default {
   title: 'Table/TransitInformation',
@@ -22,6 +22,6 @@ const Template: ComponentStory<typeof TransitInformation> = (args) => (
 
 export const Train = Template.bind({});
 Train.args = {
-  vehicle: trains[0],
+  vehicle: railPredictions[0],
   fields: railFields,
 };
