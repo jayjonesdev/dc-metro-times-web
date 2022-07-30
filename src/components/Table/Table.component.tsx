@@ -4,12 +4,12 @@ import TransitInformation from '../TransitInformation/TransitInformation.compone
 import { RailPrediction, VehicleField } from '../../types/rail.types';
 import './table.styles.css';
 
-const LoadingTable: React.FC = () => {
+const TableSkeleton: React.FC = () => {
   const rows = [...Array(100)];
 
   return (
-    <div className='table-container loading'>
-      <div className='animate-pulse table'>
+    <div id='tableSkeleton' className='table-container animate-fade-in'>
+      <div className='table animate-pulse'>
         <div className='flex-1 space-y-6 py-2 px-2'>
           {rows.map((_, index) => (
             <div key={index} className='h-10 bg-gray-600 rounded' />
@@ -25,10 +25,10 @@ const Table: React.FC<{
   data: RailPrediction[];
   isLoading: boolean;
 }> = ({ fields, data, isLoading }) => {
-  if (isLoading) return <LoadingTable />;
+  if (isLoading) return <TableSkeleton />;
 
   return (
-    <div className='table-container'>
+    <div id='table' className='table-container animate-fade-in'>
       <table className='table'>
         <Header fields={fields} />
         <tbody className='table-body'>

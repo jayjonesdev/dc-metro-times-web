@@ -7,6 +7,20 @@ import { Dropdown, NotificationHandler, Table } from '..';
 import { filterStation } from '../../utils';
 import './railTransit.styles.css';
 
+const DropdownSkeleton: React.FC = () => (
+  <div id='dropdownSkeleton' className='animate-fade-in flex space-x-4'>
+    <div className='h-8 bg-gray-600 w-40 rounded mb-3' />
+  </div>
+);
+
+const animateComponents = (components: string[]) => {
+  components.forEach((component) => {
+    let element = document.getElementById(component);
+    element?.classList.remove('animate-fade-in');
+    element?.classList.add('animate-fade-out');
+  });
+};
+
 const RailTransit: FC = () => {
   const {
     incidents: initIncidents,
@@ -31,6 +45,8 @@ const RailTransit: FC = () => {
   }, []);
 
   useEffect(() => {
+    animateComponents(['tableSkeleton', 'dropdownSkeleton']);
+
     setData(initPredictions);
     setIncidents(initIncidents);
 
@@ -44,17 +60,23 @@ const RailTransit: FC = () => {
     setTrains(trains);
   }, [currentStation, data]);
 
-  // TODO: Implement loading and error handling
+  // TODO: Error handling
   return (
     <>
       <div className='station-dropdown'>
-        <p className='mr-3'>Current Station:</p>
-        <Dropdown items={stations} itemClick={setCurrentStation}>
-          {currentStation}
-        </Dropdown>
+        {!loading ? (
+          <>
+            <p className='mr-3'>Current Station:</p>
+            <Dropdown items={stations} itemClick={setCurrentStation}>
+              {currentStation}
+            </Dropdown>
+          </>
+        ) : (
+          <DropdownSkeleton />
+        )}
       </div>
       <Table fields={railFields} data={trains} isLoading={loading} />
-      <NotificationHandler incidents={incidents} />
+      {!loading && <NotificationHandler incidents={incidents} />}
     </>
   );
 };

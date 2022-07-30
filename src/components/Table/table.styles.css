@@ -3,17 +3,19 @@
 }
 
 .table {
-  @apply relative w-full border text-gray-400 text-base text-left;
+  @apply relative w-full text-gray-400 text-base text-left;
+}
+
+.animate-fade-in {
   animation: fadeIn 1s;
+}
+
+.animate-fade-out {
+  animation: fadeOut 1s;
 }
 
 .table-body {
   @apply divide-y;
-}
-
-.loading {
-  @apply flex-grow overflow-auto border-4 border-gray-600 rounded-lg;
-  animation: fadeOut 1s;
 }
 
 @keyframes fadeIn {
