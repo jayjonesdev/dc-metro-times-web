@@ -17,6 +17,7 @@ const RailTransit: FC = () => {
   const [currentStation, setCurrentStation] = useState<string>('All');
   const [incidents, setIncidents] = useState<RailIncident[]>([]);
   const [trains, setTrains] = useState<RailPrediction[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_SERVER_URL as string);
@@ -32,6 +33,10 @@ const RailTransit: FC = () => {
   useEffect(() => {
     setData(initPredictions);
     setIncidents(initIncidents);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 750);
   }, [initPredictions, initIncidents]);
 
   useEffect(() => {
@@ -48,7 +53,7 @@ const RailTransit: FC = () => {
           {currentStation}
         </Dropdown>
       </div>
-      <Table fields={railFields} data={trains} />
+      <Table fields={railFields} data={trains} isLoading={loading} />
       <NotificationHandler incidents={incidents} />
     </>
   );

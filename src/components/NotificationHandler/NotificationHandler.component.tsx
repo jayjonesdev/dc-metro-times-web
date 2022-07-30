@@ -14,6 +14,7 @@ const NotificationHandler: React.FC<{ incidents: RailIncident[] }> = ({
     const updatedIncidents = removeAcknowledgedIncidents(incidents).map(
       (incident) => (
         <Notification
+          id={incident.IncidentID}
           key={incident.IncidentID}
           {...incident}
           onClick={() => {
@@ -32,15 +33,24 @@ const NotificationHandler: React.FC<{ incidents: RailIncident[] }> = ({
     );
   };
 
-  const acknowledgeNotification = (incidentId: string, dateUpdated: string) => {
-    localStorage.setItem(incidentId, dateUpdated);
+  const fadeOutAnimation = (incidentId: string) => {
+    const notification = document.getElementById(incidentId);
+    notification!.classList.add('fade-out');
+  };
 
-    if (currentIncident === activeIncidents.length - 1) {
-      setActiveIncidents([]);
-      setCurrentIncident(0);
-    } else {
-      setCurrentIncident((index) => (index += 1));
-    }
+  const acknowledgeNotification = (incidentId: string, dateUpdated: string) => {
+    fadeOutAnimation(incidentId);
+
+    setTimeout(() => {
+      localStorage.setItem(incidentId, dateUpdated);
+
+      if (currentIncident === activeIncidents.length - 1) {
+        setActiveIncidents([]);
+        setCurrentIncident(0);
+      } else {
+        setCurrentIncident((index) => (index += 1));
+      }
+    }, 500);
   };
 
   return activeIncidents[currentIncident] ?? null;

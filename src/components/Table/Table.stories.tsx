@@ -22,4 +22,5 @@ export const Train = Template.bind({});
 Train.args = {
   fields: railFields,
   data: railPredictions,
+  isLoading: false,
 };

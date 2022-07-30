@@ -11,11 +11,14 @@ import './notification.styles.css';
 
 type TNotification = RailIncident;
 
-const Notification: React.FC<TNotification & { onClick: () => void }> = ({
+const Notification: React.FC<
+  TNotification & { onClick: () => void; id: string }
+> = ({
   IncidentType: incidentType,
   Description,
   LinesAffected,
   IncidentID,
+  id,
   onClick,
 }) => {
   const borderColor = `${
@@ -36,7 +39,8 @@ const Notification: React.FC<TNotification & { onClick: () => void }> = ({
 
   return (
     <div
-      style={{ zIndex: 102, visibility: show ? 'visible' : 'hidden' }}
+      id={id}
+      style={{ zIndex: 102 }}
       className={`notification ${borderColor}`}
     >
       <div className='flex'>
