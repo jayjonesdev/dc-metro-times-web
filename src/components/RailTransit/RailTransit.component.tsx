@@ -1,7 +1,10 @@
 import { useEffect, useState, FC } from 'react';
-import { io } from 'socket.io-client';
 import { railFields } from '../../constants/transitFields';
-import { RailIncident, RailPrediction } from '../../types/rail.types';
+import {
+  RailEventData,
+  RailIncident,
+  RailPrediction,
+} from '../../types/rail.types';
 import useFetchRailTransitInformation from '../../hooks/useFetchRailTransitInformation';
 import { Dropdown, NotificationHandler, Table } from '..';
 import { filterStation } from '../../utils';
@@ -34,13 +37,25 @@ const RailTransit: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const socket = io(process.env.REACT_APP_SERVER_URL as string);
+    const ws = new WebSocket(`${process.env.REACT_APP_WS_SERVER_URL}`);
 
-    socket.on('rail/realtime', (data: RailPrediction[]) => setData(data));
-    socket.on('rail/incidents', (data: RailIncident[]) => setIncidents(data));
+    ws.onmessage = (event) => {
+      const railData: RailEventData = JSON.parse(event.data);
+
+      switch (railData.eventName) {
+        case 'rail/realtime':
+          setData(railData.data as RailPrediction[]);
+          break;
+        case 'rail/incidents':
+          setIncidents(railData.data as RailIncident[]);
+          break;
+        default:
+          break;
+      }
+    };
 
     return () => {
-      socket.disconnect();
+      ws.close();
     };
   }, []);
 

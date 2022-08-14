@@ -6,6 +6,12 @@ import incidents from './mockIncidentData';
 export default {
   title: 'Notification',
   component: Notification,
+  argTypes: {
+    IncidentType: {
+      options: ['Delay', 'Default', 'Alert'],
+      control: { type: 'radio' },
+    },
+  },
 } as ComponentMeta<typeof Notification>;
 
 const Template: ComponentStory<typeof Notification> = (args) => (

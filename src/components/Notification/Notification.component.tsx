@@ -27,7 +27,7 @@ const Notification: React.FC<
       : IncidentColor.Default
   }`;
   const affectedLines = LinesAffected.split(/;[\s]?/);
-  const [show, setShow] = React.useState<boolean>(true);
+  const [,setShow] = React.useState<boolean>(true);
   const close = () => {
     onClick();
     setShow(false);

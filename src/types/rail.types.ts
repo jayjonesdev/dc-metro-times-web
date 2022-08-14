@@ -47,3 +47,8 @@ export enum IncidentColor {
 }
 
 export type VehicleField = { key: string; label: string; order: number };
+
+export type RailEventData = {
+  eventName: string;
+  data: RailIncident[] | RailPrediction[];
+};
