@@ -1,5 +1,5 @@
 .station-dropdown {
-  @apply text-white flex justify-end items-baseline font-semibold;
+  @apply text-white font-semibold;
 }
 
 .map-button {

@@ -85,15 +85,15 @@ const RailTransit: FC = () => {
   return (
     <>
       <div className='flex justify-between mb-2'>
-        <Button onClick={viewMap}>View Map</Button>
+        <Button className='mr-3' onClick={viewMap}>View Map</Button>
         <div className='station-dropdown'>
           {!loading ? (
-            <>
-              <p className='mr-3'>Current Station:</p>
+            <div className='flex justify-end items-center'>
+              <p className='mr-3 items-baseline'>Station:</p>
               <Dropdown items={stations} itemClick={setCurrentStation}>
                 {currentStation}
               </Dropdown>
-            </>
+            </div>
           ) : (
             <DropdownSkeleton />
           )}
