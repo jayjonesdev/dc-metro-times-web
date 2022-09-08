@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Table from './Table.component';
 import { railFields } from '../../constants/transitFields';
-import { railPredictions } from '../TransitInformation/mockTrainData';
+import { railPredictions } from '../../constants/mockTrainData';
 
 export default {
   title: 'Table/Table',

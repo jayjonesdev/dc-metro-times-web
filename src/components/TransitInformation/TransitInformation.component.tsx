@@ -10,8 +10,8 @@ import './transitinformation.styles.css';
 const TransitInformation: React.FC<{
   vehicle: RailPrediction;
   fields: VehicleField[];
-}> = ({ vehicle, fields }, index) => (
-  <tr key={index} data-testid='row' className='row'>
+}> = ({ vehicle, fields }, key) => (
+  <tr key={key} data-testid='row' className='row'>
     {fields.map(({ key }, index) => {
       const fieldValue = () => {
         switch (key) {

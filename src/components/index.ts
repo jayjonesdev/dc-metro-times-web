@@ -7,6 +7,7 @@ import IncidentIcon from './IncidentIcon/IncidentIcon.component';
 import NotificationHandler from './NotificationHandler/NotificationHandler.component';
 import Table from './Table/Table.component';
 import RailTransit from './RailTransit/RailTransit.component';
+import Button from './Button/Button.component';
 
 export {
   TransitInformation,
@@ -18,4 +19,5 @@ export {
   NotificationHandler,
   Table,
   RailTransit,
+  Button,
 };

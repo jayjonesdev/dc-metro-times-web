@@ -1,4 +1,4 @@
-import { RailPrediction } from '../../types/rail.types';
+import { RailPrediction } from '../types/rail.types';
 
 export const anacostiaPredictions = [
   {
