@@ -1,0 +1,11 @@
+.mobile-info-container {
+  @apply flex flex-col justify-between px-6 py-4 border-4 border-gray-600 rounded-lg max-h-40 w-full odd:bg-gray-800 even:bg-gray-700 hover:bg-gray-600 text-white mb-4 flex-wrap;
+}
+
+.info-label {
+  @apply font-semibold mr-2;
+}
+
+.info-data {
+  @apply flex items-baseline;
+}

@@ -1,6 +1,15 @@
 import React from 'react';
-import { RailIncident } from '../../types/rail.types';
+import { NotificationType, RailIncident } from '../../types/rail.types';
+import useIsMobile from '../../utils/hooks/useMobileDetect.hook';
+import MobileNotification from '../MobileNotification/MobileNotification';
 import Notification from '../Notification/Notification.component';
+
+const NotificationWrapper = (args: NotificationType) => {
+  const isMobile = useIsMobile();
+
+  return isMobile ? <MobileNotification {...args} /> : <Notification {...args} />
+}
+
 
 const NotificationHandler: React.FC<{ incidents: RailIncident[] }> = ({
   incidents,
@@ -13,7 +22,7 @@ const NotificationHandler: React.FC<{ incidents: RailIncident[] }> = ({
   React.useEffect(() => {
     const updatedIncidents = removeAcknowledgedIncidents(incidents).map(
       (incident) => (
-        <Notification
+        <NotificationWrapper
           id={incident.IncidentID}
           key={incident.IncidentID}
           {...incident}

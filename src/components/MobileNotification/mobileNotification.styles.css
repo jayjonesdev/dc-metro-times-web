@@ -1,5 +1,5 @@
-.notification {
-  @apply absolute max-h-64 max-w-lg rounded-lg text-gray-100 p-6 border-4 bg-gray-500 flex justify-start flex-col bottom-5 right-5;
+.mobile-notification {
+  @apply absolute max-h-40 w-5/6 p-4 flex justify-start self-center flex-row bottom-5 rounded-lg;
   -webkit-animation: slideIn 1s forwards;
   -moz-animation: slideIn 1s forwards;
   animation: slideIn 1s forwards;
@@ -9,20 +9,8 @@
   animation: slideOut 0.5s ease-out forwards;
 }
 
-.incident-icon {
-  @apply mr-2 h-14 w-14 text-white font-bold;
-}
-
-.description {
-  @apply text-base font-semibold mb-4;
-}
-
-.lines-affected {
-  @apply mr-4 text-base;
-}
-
-.close-button {
-  @apply self-end;
+.mobile-incident-icon {
+  @apply mr-2 h-20 w-20 text-white font-bold;
 }
 
 @-webkit-keyframes slideIn {

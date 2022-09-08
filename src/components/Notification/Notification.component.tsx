@@ -1,10 +1,9 @@
 import React from 'react';
 import {
   RailIncident,
-  IncidentColor,
-  IncidentType,
   Line,
 } from '../../types/rail.types';
+import Button from '../Button/Button.component';
 import FilledCircle from '../FilledCircle/FilledCircle.component';
 import IncidentIcon from '../IncidentIcon/IncidentIcon.component';
 import './notification.styles.css';
@@ -21,27 +20,27 @@ const Notification: React.FC<
   id,
   onClick,
 }) => {
-  const borderColor = `${
-    incidentType in IncidentColor
-      ? IncidentColor[incidentType as IncidentType]
-      : IncidentColor.Default
-  }`;
+  const borderColor = () => {
+    switch (incidentType) {
+      case 'Alert':
+        return 'border-rose-500';
+      case 'Delay':
+        return 'border-amber-400';
+      default:
+        return 'border-zinc-400';
+    }
+  };
   const affectedLines = LinesAffected.split(/;[\s]?/);
-  const [,setShow] = React.useState<boolean>(true);
+
   const close = () => {
     onClick();
-    setShow(false);
   };
-
-  React.useEffect(() => {
-    setShow(true);
-  }, [IncidentID]);
 
   return (
     <div
       id={id}
       style={{ zIndex: 102 }}
-      className={`notification ${borderColor}`}
+      className={`notification ${borderColor()}`}
     >
       <div className='flex'>
         <IncidentIcon incident={incidentType} className='incident-icon' />
@@ -64,9 +63,13 @@ const Notification: React.FC<
         </div>
       </div>
 
-      <button type='button' className='close-button' onClick={close}>
+      <Button
+        variant='secondary'
+        onClick={close}
+        className='close-button'
+      >
         Close
-      </button>
+      </Button>
     </div>
   );
 };
