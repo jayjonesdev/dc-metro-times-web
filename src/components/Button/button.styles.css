@@ -1,0 +1,11 @@
+.button {
+  @apply font-medium rounded-lg text-sm text-center shadow-lg mb-1 text-white px-4 py-2.5;
+}
+
+.primary {
+  @apply dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-white;
+}
+
+.secondary {
+  @apply shadow-gray-500/50 dark:bg-gray-600 dark:hover:bg-gray-700;
+}
