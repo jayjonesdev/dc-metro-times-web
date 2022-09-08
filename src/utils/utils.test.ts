@@ -2,7 +2,7 @@ import { filterStation, getStations, upsertSort } from '.';
 import {
   railPredictions,
   anacostiaPredictions,
-} from '../components/TransitInformation/mockTrainData';
+} from '../constants/mockTrainData';
 
 describe('upsertSort', () => {
   it('adds value that is currently not in the array', () => {

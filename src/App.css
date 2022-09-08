@@ -2,3 +2,12 @@
   @apply flex flex-col h-screen p-6;
   background-color: #282c34;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

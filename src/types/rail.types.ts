@@ -41,9 +41,15 @@ export type RailIncident = {
 export type IncidentType = 'Alert' | 'Delay';
 
 export enum IncidentColor {
-  'Alert' = 'border-rose-500',
-  'Delay' = 'border-amber-400',
-  'Default' = 'border-zinc-400',
+  'Alert' = 'rose-500',
+  'Delay' = 'amber-400',
+  'Default' = 'zinc-400',
+}
+
+export enum IncidentTextColor {
+  'Alert' = 'gray-100',
+  'Delay' = 'gray-100',
+  'Default' = 'black',
 }
 
 export type VehicleField = { key: string; label: string; order: number };
@@ -51,4 +57,9 @@ export type VehicleField = { key: string; label: string; order: number };
 export type RailEventData = {
   eventName: string;
   data: RailIncident[] | RailPrediction[];
+};
+
+export type NotificationType = RailIncident & {
+  onClick: () => void;
+  id: string;
 };
