@@ -1,3 +1,11 @@
 .station-dropdown {
-    @apply text-white flex justify-end items-baseline font-semibold	;
+  @apply text-white flex justify-end items-baseline font-semibold;
+}
+
+.map-button {
+  @apply focus:ring-1 focus:outline-none font-medium rounded-lg text-sm px-4 py-2.5 text-center text-white dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-white mb-1;
+}
+
+.mobile-container {
+  @apply flex-grow  overflow-auto;
 }

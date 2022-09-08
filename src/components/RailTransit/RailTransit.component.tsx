@@ -1,13 +1,15 @@
-import { useEffect, useState, FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { Button, Dropdown, NotificationHandler, Table } from '..';
 import { railFields } from '../../constants/transitFields';
+import useFetchRailTransitInformation from '../../hooks/useFetchRailTransitInformation';
 import {
   RailEventData,
   RailIncident,
   RailPrediction,
 } from '../../types/rail.types';
-import useFetchRailTransitInformation from '../../hooks/useFetchRailTransitInformation';
-import { Dropdown, NotificationHandler, Table } from '..';
 import { filterStation } from '../../utils';
+import useIsMobile from '../../utils/hooks/useMobileDetect.hook';
+import MobileTransitInformation from '../MobileTransitInformation/MobileTransitInformation.component';
 import './railTransit.styles.css';
 
 const DropdownSkeleton: React.FC = () => (
@@ -35,6 +37,7 @@ const RailTransit: FC = () => {
   const [incidents, setIncidents] = useState<RailIncident[]>([]);
   const [trains, setTrains] = useState<RailPrediction[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const ws = new WebSocket(`${process.env.REACT_APP_WS_SERVER_URL}`);
@@ -75,22 +78,40 @@ const RailTransit: FC = () => {
     setTrains(trains);
   }, [currentStation, data]);
 
-  // TODO: Error handling
+  const viewMap = () =>
+    window.open(`${process.env.REACT_APP_WMATA_RAIL_MAP_URL}`, '_blank');
+
+  // TODO: Error handling, for mobile display Abbreviated station names/codes
   return (
     <>
-      <div className='station-dropdown'>
-        {!loading ? (
-          <>
-            <p className='mr-3'>Current Station:</p>
-            <Dropdown items={stations} itemClick={setCurrentStation}>
-              {currentStation}
-            </Dropdown>
-          </>
-        ) : (
-          <DropdownSkeleton />
-        )}
+      <div className='flex justify-between mb-2'>
+        <Button onClick={viewMap}>View Map</Button>
+        <div className='station-dropdown'>
+          {!loading ? (
+            <>
+              <p className='mr-3'>Current Station:</p>
+              <Dropdown items={stations} itemClick={setCurrentStation}>
+                {currentStation}
+              </Dropdown>
+            </>
+          ) : (
+            <DropdownSkeleton />
+          )}
+        </div>
       </div>
-      <Table fields={railFields} data={trains} isLoading={loading} />
+      {isMobile ? (
+        <div className='mobile-container'>
+          {trains.map((vehicle, index) => (
+            <MobileTransitInformation
+              key={index}
+              fields={railFields}
+              vehicle={vehicle}
+            />
+          ))}
+        </div>
+      ) : (
+        <Table fields={railFields} data={trains} isLoading={loading} />
+      )}
       {!loading && <NotificationHandler incidents={incidents} />}
     </>
   );

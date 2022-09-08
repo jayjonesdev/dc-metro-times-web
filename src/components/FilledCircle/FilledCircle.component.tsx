@@ -9,10 +9,11 @@ const FilledCircle: React.FC<{ line: Line; className?: string }> = ({
   <span
     aria-label={`${line} line`}
     data-testid='line-filled-circle'
-    className={`flex h-3 w-3 ${className}`}
+    className={`flex h-3 w-3 ${className ?? ''}`}
   >
-    <span className={`pulse ${LineColor[line]}`}></span>
-    <span className={`filled-circle ${LineColor[line]}`}></span>
+    <span className={`filled-circle ${LineColor[line]}`}>
+      <span className={`pulse ${LineColor[line]}`}></span>
+    </span>
   </span>
 );
 

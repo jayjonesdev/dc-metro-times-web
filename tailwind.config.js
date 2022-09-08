@@ -1,7 +1,11 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      flexBasis: {
+        '50': 50,
+      },
+    },
   },
   plugins: [],
 };
