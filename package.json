@@ -26,7 +26,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "docker:build": "docker build -t dc-metro-times-client .",
+    "docker:run": "docker run -d -p 3000:3000 dc-metro-times-client"
   },
   "eslintConfig": {
     "extends": [
