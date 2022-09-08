@@ -37,3 +37,14 @@ export const upsertSort = (arr: string[], str: string): string[] => {
   }
   return updatedArr;
 };
+
+export const debounce = (func: Function, timeout: number) => {
+  let timer: NodeJS.Timeout;
+
+  return (...args: any) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+};
