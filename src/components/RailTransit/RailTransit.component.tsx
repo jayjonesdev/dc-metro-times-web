@@ -12,8 +12,12 @@ import useIsMobile from '../../utils/hooks/useMobileDetect.hook';
 import MobileTransitInformation from '../MobileTransitInformation/MobileTransitInformation.component';
 import './railTransit.styles.css';
 
-const DropdownSkeleton: React.FC = () => (
-  <div id='dropdownSkeleton' className='animate-fade-in flex space-x-4'>
+const HeaderSkeleton: React.FC = () => (
+  <div
+    id='headerSkeleton'
+    className='animate-fade-in flex justify-between space-x-4'
+  >
+    <div className='h-8 bg-gray-600 w-20 rounded mb-3' />
     <div className='h-8 bg-gray-600 w-40 rounded mb-3' />
   </div>
 );
@@ -63,7 +67,7 @@ const RailTransit: FC = () => {
   }, []);
 
   useEffect(() => {
-    animateComponents(['tableSkeleton', 'dropdownSkeleton']);
+    animateComponents(['tableSkeleton', 'headerSkeleton']);
 
     setData(initPredictions);
     setIncidents(initIncidents);
@@ -84,21 +88,23 @@ const RailTransit: FC = () => {
   // TODO: Error handling, for mobile display Abbreviated station names/codes
   return (
     <>
-      <div className='flex justify-between mb-2'>
-        <Button className='mr-3' onClick={viewMap}>View Map</Button>
-        <div className='station-dropdown'>
-          {!loading ? (
+      {!loading ? (
+        <div className='flex justify-between mb-2'>
+          <Button className='mr-3' onClick={viewMap}>
+            View Map
+          </Button>
+          <div className='station-dropdown'>
             <div className='flex justify-end items-center'>
               <p className='mr-3 items-baseline'>Station:</p>
               <Dropdown items={stations} itemClick={setCurrentStation}>
                 {currentStation}
               </Dropdown>
             </div>
-          ) : (
-            <DropdownSkeleton />
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <HeaderSkeleton />
+      )}
       {isMobile ? (
         <div className='mobile-container'>
           {trains.map((vehicle, index) => (
@@ -106,6 +112,7 @@ const RailTransit: FC = () => {
               key={index}
               fields={railFields}
               vehicle={vehicle}
+              isLoading={loading}
             />
           ))}
         </div>
