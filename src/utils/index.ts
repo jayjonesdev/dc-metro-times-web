@@ -2,7 +2,7 @@ import { RailPrediction } from '../types/rail.types';
 
 export const getStations = (data: RailPrediction[]): string[] => {
   let stations = data.reduce((acc, val) => {
-    if (!acc.includes(val.LocationName)) {
+    if (!acc.includes(val.LocationName) && val.LocationName !== null) {
       return [...acc, val.LocationName];
     }
     return acc;
