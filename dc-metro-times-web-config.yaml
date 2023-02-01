@@ -1,4 +1,5 @@
 # dc-metro-times-web-config.yaml
+# Update server urls
 apiVersion: v1
 kind: ConfigMap
 metadata:
