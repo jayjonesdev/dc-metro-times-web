@@ -1,0 +1,9 @@
+# dc-metro-times-web-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dc-metro-times-web-config
+data:
+  REACT_APP_SERVER_URL: http://localhost:7070
+  REACT_APP_WS_SERVER_URL: ws://localhost:7071
+  REACT_APP_WMATA_RAIL_MAP_URL: https://www.wmata.com/schedules/maps/upload/2022-System-Map.pdf

@@ -1,0 +1,48 @@
+# Update port numbers and container images, update service type as well
+apiVersion: v1
+kind: Service
+metadata:
+  name: dc-metro-times-web-svc
+spec:
+  type: NodePort
+  selector:
+    app: dcMetroTimesWeb
+  ports:
+  - port: 4567
+    nodePort: 30001
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dcMetroTimesWeb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dcMetroTimesWeb
+  template:
+    metadata:
+      labels:
+        app: dcMetroTimesWeb
+    spec:
+      containers:
+      - image: brianstorti/hellok8s:v4
+        name: hellok8s-container
+        env:
+          - name: REACT_APP_SERVER_URL
+            valueFrom: 
+              configMapKeyRef:
+                name: dc-metro-times-web-config
+                key: REACT_APP_SERVER_URL
+          - name: REACT_APP_WS_SERVER_URL
+            valueFrom: 
+              configMapKeyRef:
+                name: dc-metro-times-web-config
+                key: REACT_APP_WS_SERVER_URL
+          - name: REACT_APP_WMATA_RAIL_MAP_URL
+            valueFrom: 
+              configMapKeyRef:
+                name: dc-metro-times-web-config
+                key: REACT_APP_WMATA_RAIL_MAP_URL

@@ -28,7 +28,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "docker:build": "docker build -t dc-metro-times-client .",
-    "docker:run": "docker run -d -p 3000:3000 dc-metro-times-client"
+    "docker:run": "docker run -d -p 3000:3000 dc-metro-times-client",
+    "docker:push": "docker push dc-metro-times-client:$npm_config_version"
   },
   "eslintConfig": {
     "extends": [
