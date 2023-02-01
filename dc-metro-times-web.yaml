@@ -30,19 +30,7 @@ spec:
       containers:
       - image: brianstorti/hellok8s:v4
         name: hellok8s-container
-        env:
-          - name: REACT_APP_SERVER_URL
-            valueFrom: 
-              configMapKeyRef:
-                name: dc-metro-times-web-config
-                key: REACT_APP_SERVER_URL
-          - name: REACT_APP_WS_SERVER_URL
-            valueFrom: 
-              configMapKeyRef:
-                name: dc-metro-times-web-config
-                key: REACT_APP_WS_SERVER_URL
-          - name: REACT_APP_WMATA_RAIL_MAP_URL
-            valueFrom: 
-              configMapKeyRef:
-                name: dc-metro-times-web-config
-                key: REACT_APP_WMATA_RAIL_MAP_URL
+        envFrom:
+          - configMapKeyRef:
+              name: dc-metro-times-web-config
+              
